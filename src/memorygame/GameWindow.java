@@ -42,7 +42,7 @@ public class GameWindow extends JFrame {
         setLayout(new BorderLayout());
 
         cards = new ArrayList<>();
-        images = loadImages();
+        images = loadImages(level);
         selectedImages = new ArrayList<>();
         initializeCards();
         setupMenuBar();
@@ -50,8 +50,8 @@ public class GameWindow extends JFrame {
         setVisible(true);
     }
 
-    private List<ImageIcon> loadImages() {
-        ImageManager imageManager = new ImageManager();
+    private List<ImageIcon> loadImages(int level) {
+        ImageManager imageManager = new ImageManager(level);
         return imageManager.getShuffledImages();
     }
 
@@ -136,15 +136,29 @@ public class GameWindow extends JFrame {
         aboutDeveloperMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Developer: [Your Name]\nStudent Number: [Your Student Number]");
+                JOptionPane.showMessageDialog(null, "Developer: Kaya Berk KARAKELLE\nStudent Number: 20210702069");
             }
         });
 
         aboutMenu.add(aboutGameMenuItem);
         aboutMenu.add(aboutDeveloperMenuItem);
 
+        JMenu exitMenu = new JMenu("Exit");
+        JMenuItem exitMenuItem = new JMenuItem("Exit to Main Menu");
+
+        exitMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MainMenu();
+                dispose();
+            }
+        });
+
+        exitMenu.add(exitMenuItem);
+
         menuBar.add(gameMenu);
         menuBar.add(aboutMenu);
+        menuBar.add(exitMenu);
         setJMenuBar(menuBar);
     }
 
@@ -247,7 +261,7 @@ public class GameWindow extends JFrame {
             public void run() {
                 Collections.shuffle(selectedImages);
                 for (int i = 0; i < cards.size(); i++) {
-                    cards.get(i).setIcon(new ImageIcon("images/cover.jpg"));
+                    cards.get(i).setIcon(new ImageIcon("src/images/question_20.png"));
                     cards.get(i).setEnabled(true);
                 }
             }

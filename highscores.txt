@@ -1,1 +1,10 @@
-kaan: -33
+ayaz: 12
+Icardi: 23
+Alex: 7
+Ronaldo: 12
+Messi: 10
+Neymar: 25
+Lux: 40
+Yasuo: -24
+Jett: 28
+Muslera: -22
